@@ -1,0 +1,217 @@
+body {
+  margin: 0;
+  font-family: 'Google Sans', Arial, sans-serif;
+  overflow-x: hidden; 
+  background: #171717; 
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+/* --- Overall Layout Container for App and Sidebar --- */
+.LayoutContainer {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* --- Main Application Content Area --- */
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #171717;
+  color: #E0E0E0; 
+  font-style: normal;
+  padding: 20px;
+  box-sizing: border-box;
+  transition: width 0.3s ease-in-out, margin-left 0.3s ease-in-out;
+  flex-grow: 1;
+  min-height: 100vh;
+  /* Default margin-left for mini-sidebar width (60px) */
+  margin-left: 250px;
+}
+
+/* When sidebar is open, adjust margin-left to make space for the full sidebar */
+.LayoutContainer .App[style*="calc(100vw - 250px)"] {
+  margin-left: 250px;
+}
+
+
+/* --- Heading Style --- */
+h1 {
+  align-self: flex-start;
+  margin-bottom: 20px;
+  font-family: 'Google Sans', sans-serif;
+  font-style: normal;
+  color: #8C8C8C;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+/* --- Menu Toggle Button (always visible, fixed position) --- */
+.button-toggle {
+  cursor: pointer;
+  padding: 10px;
+  position: fixed;
+  top: 15px;
+  left: 5px;
+  z-index: 30;
+  color: #8C8C8C;
+  background-color: transparent;
+  border-radius: 50%;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.button-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+
+/* --- Full Sidebar Styles (when isSidebarOpen is true) --- */
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  padding: 20px;
+  background-color: #202124;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
+  color: #E0E0E0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 20; 
+  transform: translateX(0); 
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Sidebar items */
+.sidebar h3 {
+    color: #8C8C8C;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.sidebar li {
+    padding: 10px 15px;
+    margin-bottom: 5px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 0.95rem;
+}
+
+.sidebar li:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar li .anticon {
+    font-size: 18px;
+    color: #9AA0A6;
+}
+
+/* "New Chat" button within full sidebar */
+.new-chat-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: calc(100% - 15px);
+  padding: 12px 10px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 25px;
+  color: #E0E0E0;
+  cursor: pointer;
+  margin-top: 50px;
+  font-weight: 500;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.new-chat-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.new-chat-button .anticon {
+    font-size: 20px;
+    color: #E0E0E0;
+}
+
+/* Close Sidebar Button inside the expanded sidebar */
+.sidebar .close-button {
+  background-color: transparent;
+  color: #8C8C8C;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: auto;
+  align-self: center;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.sidebar .close-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #E0E0E0;
+}
+
+
+/* --- Mini Sidebar Styles (when isSidebarOpen is false) --- */
+.mini-sidebar {
+  width: 60px;
+  height: 100vh;
+  background-color: #202124;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 70px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 15;
+  transition: width 0.3s ease-in-out;
+}
+
+.mini-sidebar-item {
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    color: #8C8C8C;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mini-sidebar-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.mini-sidebar-item .anticon {
+    font-size: 20px;
+}
+
+.mini-sidebar-bottom {
+    margin-top: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 20px;
+}
